@@ -1,0 +1,9 @@
+extends ../layout 
+
+block main-content 
+    section.quiz 
+        h1 Complete this quiz to test your knowledge of fitness
+        form.questions 
+            each question in questions
+                h2 #{question.question.text}
+

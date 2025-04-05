@@ -87,8 +87,10 @@ section.content {
   padding: 0 3.5rem;
 }
 h1 {
-  font-size: 3rem;
   font-family: "Major Mono Display", monospace;
+}
+h1.main-page {
+  font-size: 3rem;
 }
 section .content p {
   font-size: 1.3rem;
@@ -162,6 +164,11 @@ section.main-page-gallery .imgBox img {
 section.main-page-gallery .imgBox img:hover {
   width: 110%;
   height: 110%;
+}
+
+/* Quiz page stying */
+section.quiz {
+  padding: 3rem 5rem;
 }
 
 /*

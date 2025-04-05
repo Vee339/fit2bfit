@@ -4,7 +4,6 @@
   "description": "People often have difficulty to find a workout plan in which they can target their particular muscles. This app helps the users to create workout plan, gain fitness knowledge, and excite them about the fitness world.",
   "license": "MIT",
   "author": "Veerpal Kaur",
-  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"

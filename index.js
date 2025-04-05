@@ -1,10 +1,10 @@
 // Importing the required modules
 const express = require("express");
 const path = require("path");
-
 const dotenv = require("dotenv");
 
 dotenv.config();
+const trivia = require("./components/trivia/api.mjs").default;
 
 // Setting the express
 const app = express();
@@ -22,7 +22,13 @@ app.use(express.json());
 
 // main page
 app.get("/", async (req, res) => {
-  res.render("home/index");
+  res.render("home/index", { title: "Sweat.Smile.Repeat." });
+});
+
+//quiz page
+app.get("/quiz", async (req, res) => {
+  let quizQuestions = await trivia.getQuizQuestions();
+  res.render("quiz/quiz", { title: "Quiz", questions: quizQuestions });
 });
 
 // Set up the server listening
