@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const trivia = require("./components/trivia/api.mjs").default;
+const score = require("./components/trivia/score.mjs").default;
 
 // Setting the express
 const app = express();
@@ -20,6 +21,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+let quizQuestions;
+
 // main page
 app.get("/", async (req, res) => {
   res.render("home/index", { title: "Sweat.Smile.Repeat." });
@@ -27,8 +30,14 @@ app.get("/", async (req, res) => {
 
 //quiz page
 app.get("/quiz", async (req, res) => {
-  let quizQuestions = await trivia.getQuizQuestions();
+  quizQuestions = await trivia.getQuizQuestions();
   res.render("quiz/quiz", { title: "Quiz", questions: quizQuestions });
+});
+
+// submission page
+app.post("/quiz/submit", async (req, res) => {
+  const totalScore = await score.calculateScore(quizQuestions, req.body);
+  res.render("quiz/result", { title: "Quiz Result", score: totalScore });
 });
 
 // Set up the server listening

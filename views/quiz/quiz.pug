@@ -3,7 +3,21 @@ extends ../layout
 block main-content 
     section.quiz 
         h1 Complete this quiz to test your knowledge of fitness
-        form.questions 
-            each question in questions
-                h2 #{question.question.text}
-
+        form.questions(method="POST" action="/quiz/submit")
+            each question in questions /* Loop for the questions */
+                div.question
+                    h3 #{question.question.text}
+                    - let questionNumber = questions.indexOf(question);
+                    - let options = question.incorrectAnswers;
+                    - options.push(question.correctAnswer); /* Combining the correct answer with incorrect answers*/
+                    - for (let i = options.length - 1; i > 0; i--) { /*Shuffling the options so that the correct answer is not obvious*/
+                    -        const j = Math.floor(Math.random() * (i + 1));
+                    -        let temp = options[i];
+                    -        options[i] = options[j];
+                    -        options[j] = temp;
+                    -    }
+                    each option in options /* Loop for the options*/
+                        .option-wrap
+                            input(type="radio" name=`question${questionNumber}` id=`ques-${questionNumber}-${options.indexOf(option)}` value=`${option}`)
+                            label(for=`ques-${questionNumber}-${options.indexOf(option)}`) #{option}
+            button(type="submit") Submit your quiz

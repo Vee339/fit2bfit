@@ -73,12 +73,12 @@ header nav #menu li:hover::before {
 main {
   display: flex;
   width: 100%;
-  height: 600px;
+  min-height: 600px;
   color: var(--whitish-color);
 }
 section.content {
   width: 50%;
-  height: 100%;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,7 +125,7 @@ section .content .buttons button a:hover {
 }
 section.main-page-gallery {
   width: 50%;
-  height: 100%;
+  height: 600px;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
@@ -169,6 +169,100 @@ section.main-page-gallery .imgBox img:hover {
 /* Quiz page stying */
 section.quiz {
   padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+h1 {
+  font-size: 2rem;
+}
+form.questions {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.option-wrap {
+  border: 0.5px solid #d4c9be75;
+  cursor: pointer;
+  display: flex;
+  width: 270px;
+}
+.option-wrap input {
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+.option-wrap label {
+  width: 100%;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.option-wrap label:hover {
+  background: #12345857;
+}
+.option-wrap input:checked + label {
+  color: var(--secondary-color);
+  background: var(--grey-color);
+  font-weight: bold;
+}
+.questions button {
+  padding: 0.8rem;
+  /* width: 180px; */
+  cursor: pointer;
+  border: none;
+  background: var(--whitish-color);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.question button:hover {
+  background: white;
+}
+
+/* Styling of the Result Page */
+.result-page {
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+h1.result-page-heading {
+  margin: 1.5rem 0.4rem;
+}
+.buttons.result-page-buttons {
+  display: flex;
+  width: 100%;
+  gap: 2.5rem;
+}
+.buttons.result-page-buttons button {
+  background: transparent;
+  font-size: 1.2rem;
+  border: 1px solid var(--grey-color);
+  flex-basis: 50%;
+  height: 55px;
+}
+.buttons.result-page-buttons button a {
+  text-decoration: none;
+  color: var(--whitish-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.buttons.result-page-buttons button:hover {
+  background: var(--secondary-color);
 }
 
 /*
