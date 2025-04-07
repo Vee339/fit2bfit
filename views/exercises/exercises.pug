@@ -1,0 +1,20 @@
+extends ../layout  
+
+block main-content 
+    div.exercises-page
+        h1.exercise-page-heading Your guide to muscle-specific exercises
+        form(method="POST", action="/exercises/search") 
+            label(for="muscle-selector") Which muscle you want to train today?
+            select(id="muscle-selector" name="muscle")
+                option(selected, disabled) Select from the List
+                option(value="biceps") Biceps 
+                option(value="shoulders") Shoulders 
+                option(value="core") Core 
+                option(value="back") Back 
+                option(value="chest") Chest 
+                option(value="triceps") Triceps 
+                option(value="glutes") Glutes 
+                option(value="thighs") Thighs 
+                option(value="claves") Calves
+            button(type="submit") Search
+        

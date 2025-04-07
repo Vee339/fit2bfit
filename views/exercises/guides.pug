@@ -1,0 +1,12 @@
+extends ../layout.pug 
+
+block main-content 
+    .guides-page 
+        h1 Watch these Videos for guidance
+        section.videos
+            each id, index in videoIds  
+                .video-container(id=`player${index}`)
+    block scripts
+        script.
+            window.videoIdsFromServer = !{JSON.stringify(videoIds)};
+        script(src="/js/embed-videos.js", type="text/javascript")

@@ -4,8 +4,10 @@ const path = require("path");
 const dotenv = require("dotenv");
 
 dotenv.config();
+
 const trivia = require("./components/trivia/api.mjs").default;
 const score = require("./components/trivia/score.mjs").default;
+const youtube = require("./components/youtube/videos.mjs").default;
 
 // Setting the express
 const app = express();
@@ -38,6 +40,22 @@ app.get("/quiz", async (req, res) => {
 app.post("/quiz/submit", async (req, res) => {
   const totalScore = await score.calculateScore(quizQuestions, req.body);
   res.render("quiz/result", { title: "Quiz Result", score: totalScore });
+});
+
+// Rendering the exercises page
+app.get("/exercises", async (req, res) => {
+  res.render("exercises/exercises", { title: "Exercises" });
+});
+
+// Searching the youtube videos
+app.post("/exercises/search", async (req, res) => {
+  let targetMuscle = req.body.muscle;
+  let queryRequest = `${targetMuscle} muscle workout`;
+  let formattedQuery = queryRequest.replaceAll(" ", "%20");
+  let videos = await youtube.getSearchedVideos(formattedQuery);
+
+  const videoIds = videos.items.map((item) => item.id.videoId);
+  res.render("exercises/guides", { title: "Guides", videoIds: videoIds });
 });
 
 // Set up the server listening
